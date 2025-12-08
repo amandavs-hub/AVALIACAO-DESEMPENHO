@@ -9,7 +9,11 @@ Este script foi gerado pelo chat gpt, precisamos:
 1) Isolar estas linhas de BD em outro arquivo para facilitar a organização do código.
 2) Ajustar as querys corretamente
 3) Vamos organizar uma pasta para .css também?
+4) Sugestão super válida do Yure: utilizar criptografia ao salvar os dados
+
  */
+
+
 
 // Conexão segura com MySQL
 /*$servername = "localhost";
