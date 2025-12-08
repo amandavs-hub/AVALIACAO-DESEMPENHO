@@ -1,5 +1,9 @@
 <?php
 /***
+ * Cheguei aqui Amandinha. Nesse projeto vamos ter criptografia?
+ * 
+ * Bjs Yurex
+ 
 Este script foi gerado pelo chat gpt, precisamos:
 
 1) Isolar estas linhas de BD em outro arquivo para facilitar a organização do código.
