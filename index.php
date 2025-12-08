@@ -1,8 +1,10 @@
 <?php
 /***
-este script foi gerado pelo chat gpt
-precisamos isolar estas linhas de BD em outro arquivo para facilitar a organização do código.
-podemos fazer isto com o arquivo de .css também!
+Este script foi gerado pelo chat gpt, precisamos:
+
+1) Isolar estas linhas de BD em outro arquivo para facilitar a organização do código.
+2) Ajustar as querys corretamente
+3) Vamos organizar uma pasta para .css também?
  */
 
 // Conexão segura com MySQL
