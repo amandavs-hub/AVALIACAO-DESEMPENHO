@@ -1,4 +1,10 @@
 <?php
+/***
+este script foi gerado pelo chat gpt
+precisamos isolar estas linhas de BD em outro arquivo para facilitar a organização do código.
+podemos fazer isto com o arquivo de .css também!
+ */
+
 // Conexão segura com MySQL
 /*$servername = "localhost";
 $username = "root";
