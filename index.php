@@ -36,13 +36,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     for ($i=1; $i<=10; $i++) {
         $fields["p$i"] = clean($_POST["p$i"] ?? "");
     }
-
+    // Essa forma de trabalho é muito interessante e bem mais segura
+    // Usando os comandos Prepare e Execute
+    // Acho uma boa usarmos essa escrita neste código para pegarmos familiaridade
+    // A idéia depois é ajustar o PGFW para trabalhar com essa escrita
     $sql = "INSERT INTO avaliacao (" . implode(",", array_keys($fields)) . ") VALUES (?,?,?,?,?,?,?,?,?,?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssssssss", ...array_values($fields));
     $stmt->execute();
     $success = true;
 }*/
+
+class MyList {
+    public $empty = 'Selecione...';
+    public function __construct($options,$name,$attr='required'){
+        $this->options = $options;
+        $this->name = $name;
+        $this->attr = $attr;
+    }
+    public function __toString(){
+        $return = '<select class="form-select" name="'.$this->name.'" '.$this->attr.'>
+            <option value="">'.$this->empty.'</option>';
+        foreach ($this->options as $key => $value) {
+            $return .= '<option value="'.($key+1).'">'.($key+1).' - '.$value.'</option>';
+        }
+        $return .= '</select>';
+        return $return;
+    }
+    static public function satisfacao($name,$attr='required'){
+        return new MyList(array('Muito insatisfatória','Insatisfatória','Regular','Satisfatória','Excelente'),$name,$attr);
+    }
+    static public function frequencia($name,$attr='required'){
+        return new MyList(array('Nunca','Raramente','Às vezes','Frequentemente','Sempre'),$name,$attr);
+    }
+    static public function utilidade($name,$attr='required'){
+        return new MyList(array('Nada útil','Pouco útil','Razoavelmente útil','Útil','Muito útil'),$name,$attr);
+    }
+    static public function qualidade($name,$attr='required'){
+        return new MyList(array('Muito ruim','Ruim','Neutro','Bom','Excelente'),$name,$attr);
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -100,10 +133,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <h1 class="mt-3">Avaliação de Desempenho</h1>
         </div>
 
-        <?php if (!empty($success)): ?>
+        <?php if (!empty($success)){ ?>
             <div class="alert alert-success text-center">Avaliação enviada com sucesso!</div>
-        <?php endif; ?>
-
+        <?php } else { ?>
+        <?php } ?>
         <form method="POST" id="avaliacaoForm">
 
     <!-- Gestão -->
@@ -111,95 +144,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <div class="mb-3">
         <label class="form-label">1. Como você avalia a comunicação da liderança com a equipe?</label>
-        <select class="form-select" name="p1" required>
-            <option value="">Selecione...</option>
-            <option>1 - Muito insatisfatória</option>
-            <option>2 - Insatisfatória</option>
-            <option>3 - Regular</option>
-            <option>4 - Satisfatória</option>
-            <option>5 - Excelente</option>
-        </select>
+        <?php echo $obj = MyList::satisfacao('p1');?>
     </div>
 
     <div class="mb-3">
         <label class="form-label">2. O gestor demonstra clareza nas expectativas e objetivos?</label>
-        <select class="form-select" name="p2" required>
-            <option value="">Selecione...</option>
-            <option>1 - Nunca</option>
-            <option>2 - Raramente</option>
-            <option>3 - Às vezes</option>
-            <option>4 - Frequentemente</option>
-            <option>5 - Sempre</option>
-        </select>
+        <?php echo MyList::frequencia('p2');?>
     </div>
 
     <div class="mb-3">
         <label class="form-label">3. O gestor está disponível quando você precisa de apoio ou orientação?</label>
-        <select class="form-select" name="p3" required>
-            <option value="">Selecione...</option>
-            <option>1 - Nunca</option>
-            <option>2 - Raramente</option>
-            <option>3 - Às vezes</option>
-            <option>4 - Frequentemente</option>
-            <option>5 - Sempre</option>
-        </select>
+        <?php echo MyList::frequencia('p3');?>
     </div>
 
     <div class="mb-3">
         <label class="form-label">4. O feedback recebido da liderança é útil e aplicável no dia a dia?</label>
-        <select class="form-select" name="p4" required>
-            <option value="">Selecione...</option>
-            <option>1 - Nada útil</option>
-            <option>2 - Pouco útil</option>
-            <option>3 - Razoavelmente útil</option>
-            <option>4 - Útil</option>
-            <option>5 - Muito útil</option>
-        </select>
+        <?php echo MyList::utilidade('p4');?>
     </div>
 
     <div class="mb-3">
         <label class="form-label">5. Você se sente ouvido(a) pela gestão quando traz sugestões ou preocupações?</label>
-        <select class="form-select" name="p5" required>
-            <option value="">Selecione...</option>
-            <option>1 - Nunca</option>
-            <option>2 - Raramente</option>
-            <option>3 - Às vezes</option>
-            <option>4 - Frequentemente</option>
-            <option>5 - Sempre</option>
-        </select>
+        <?php echo MyList::frequencia('p5');?>
     </div>
 
-	<br><br>
+    <br><br>
 
     <!-- Ambiente de trabalho -->
     <h4 class="mt-4 mb-3" style="color:var(--primary-color); font-weight:700;">Ambiente de Trabalho</h4>
 
     <div class="mb-3">
         <label class="form-label">6. Você considera seu ambiente de trabalho saudável e colaborativo?</label>
-        <select class="form-select" name="p6" required>
-            <option value="">Selecione...</option>
-            <option>1 - Muito ruim</option>
-            <option>2 - Ruim</option>
-            <option>3 - Neutro</option>
-            <option>4 - Bom</option>
-            <option>5 - Excelente</option>
-        </select>
+        <?php echo MyList::qualidade('p6');?>
     </div>
 
     <div class="mb-3">
         <label class="form-label">7. Você sente que seu trabalho é reconhecido e valorizado?</label>
-        <select class="form-select" name="p7" required>
-            <option value="">Selecione...</option>
-            <option>1 - Nunca</option>
-            <option>2 - Raramente</option>
-            <option>3 - Às vezes</option>
-            <option>4 - Frequentemente</option>
-            <option>5 - Sempre</option>
-        </select>
+        <?php echo MyList::frequencia('p7');?>
     </div>
 
 
-	<br><br>
+    <br><br>
 
     <!-- Perguntas abertas -->
     <h4 class="mt-4 mb-3" style="color:var(--primary-color); font-weight:700;">Perguntas Abertas</h4>
@@ -219,7 +203,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <textarea class="form-control" name="p10" rows="3"></textarea>
     </div>
 
-	<br><br>
+    <br><br>
 
     <button type="submit" class="btn btn-primary w-100">Enviar Avaliação</button>
 </form>
