@@ -34,9 +34,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $fields = [];
     for ($i=1; $i<=10; $i++) {
-        $fields["p$i"] = clean($_POST["p$i"] ?? "");
+        // Esse código abaixo não dá para ser usado em nosso servidor sistemas.msti.com.br ele usa um recurso muito bacana do PHP 7
+        //$fields["p$i"] = clean($_POST["p$i"] ?? "");
+        // Para php inferior ao 7 podemos usar o código (se shot-tags habilitado)
+        // Código equivalente antes do PHP 7
+        $fields["p$i"] = claean(isset($_POST["p$i"]) ? $_POST["p$i"] : '');
+        // Em outras palavras o Operador '??' equivale ao uso do COALESCE() no MySQL
     }
-    // Essa forma de trabalho é muito interessante e bem mais segura
+    // Essa forma de trabalho,abaixo, é muito interessante e bem mais segura
     // Usando os comandos Prepare e Execute
     // Acho uma boa usarmos essa escrita neste código para pegarmos familiaridade
     // A idéia depois é ajustar o PGFW para trabalhar com essa escrita
@@ -45,6 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stmt->bind_param("ssssssssss", ...array_values($fields));
     $stmt->execute();
     $success = true;
+    //Pergunta Amanda. Essa base de Dados já foi criada?
 }*/
 
 class MyList {
