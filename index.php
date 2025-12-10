@@ -53,35 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //Pergunta Amanda. Essa base de Dados já foi criada?
 }*/
 
-class MyList {
-    public $empty = 'Selecione...';
-    public function __construct($options,$name,$attr='required'){
-        $this->options = $options;
-        $this->name = $name;
-        $this->attr = $attr;
-    }
-    public function __toString(){
-        $return = '<select class="form-select" name="'.$this->name.'" '.$this->attr.'>
-            <option value="">'.$this->empty.'</option>';
-        foreach ($this->options as $key => $value) {
-            $return .= '<option value="'.($key+1).'">'.($key+1).' - '.$value.'</option>';
-        }
-        $return .= '</select>';
-        return $return;
-    }
-    static public function satisfacao($name,$attr='required'){
-        return new MyList(array('Muito insatisfatória','Insatisfatória','Regular','Satisfatória','Excelente'),$name,$attr);
-    }
-    static public function frequencia($name,$attr='required'){
-        return new MyList(array('Nunca','Raramente','Às vezes','Frequentemente','Sempre'),$name,$attr);
-    }
-    static public function utilidade($name,$attr='required'){
-        return new MyList(array('Nada útil','Pouco útil','Razoavelmente útil','Útil','Muito útil'),$name,$attr);
-    }
-    static public function qualidade($name,$attr='required'){
-        return new MyList(array('Muito ruim','Ruim','Neutro','Bom','Excelente'),$name,$attr);
-    }
-}
+include 'includes/classes.php';
 ?>
 
 <!DOCTYPE html>
@@ -91,44 +63,7 @@ class MyList {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Avaliação de Desempenho</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-
-<style>
-    :root {
-        --primary-color: #fff;
-        --primary-dark: #003f7a;
-        --bg-light: #f4f8fb;
-    }
-    body {
-        background: var(--bg-light);
-    }
-    .container-box {
-        background: #002e5b;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        margin-top: 40px;
-    }
-    h1 {
-        color: var(--primary-color);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-    }
-    .form-label {
-        font-weight: 600;
-        color: var(--primary-color);
-    }
-    .btn-primary {
-        background: var(--primary-dark);
-        border: none;
-        font-size: 18px;
-        padding: 12px;
-        border-radius: 10px;
-        font-weight: 600;
-    }
-    .btn-primary:hover {
-        background: var(--primary-dark);
-    }
-</style>
+<link rel="stylesheet" href="assets/css/base.css">
 </head>
 <body>
 
