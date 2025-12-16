@@ -1,5 +1,12 @@
 <?php
 /***
+ * Amanda a idéia é a avaliação ser anônima?
+ * Na AAPG a avaliação era criptografada mas não anônima, era periódica e em dado período 
+ * o usuário poderia preencher e, pelo que me lembro não era possível editar.
+ * Como será aqui?
+ * 
+ * bjs Yurex
+ * 
  * Cheguei aqui Amandinha. Nesse projeto vamos ter criptografia?
  * 
  * Bjs Yurex
