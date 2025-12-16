@@ -77,6 +77,7 @@ include 'includes/classes.php';
         <?php if (!empty($success)){ ?>
             <div class="alert alert-success text-center">Avaliação enviada com sucesso!</div>
         <?php } else { ?>
+            <div class="alert alert-primary text-center">Olá, por favor preencha nossa Avaliação de Desempenho.</div>
         <?php } ?>
         <form method="POST" id="avaliacaoForm">
 
