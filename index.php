@@ -77,7 +77,7 @@ include 'includes/classes.php';
 <div class="container">
     <div class="container-box">
         <div class="text-center mb-4">
-            <img src="https://www.msti.com.br/wp-content/uploads/2016/05/logo.png" alt="Logo" style="max-width:180px;margin-bottom:20px;">        
+            <img src="assets/img/logo.png" alt="Logo" style="max-width:180px;margin-bottom:20px;">        
             <h1 class="mt-3">Avaliação de Desempenho</h1>
         </div>
 
