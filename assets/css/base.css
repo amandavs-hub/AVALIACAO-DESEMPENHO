@@ -2,15 +2,17 @@
     --primary-color: #fff;
     --primary-dark: #003f7a;
     --bg-light: #f4f8fb;
+    --container-box-bg:#002e5b;
+    --shadows:rgba(0,0,0,0.1);
 }
 body {
     background: var(--bg-light);
 }
 .container-box {
-    background: #002e5b;
+    background:var(--container-box-bg) ;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px var(--shadows);
     margin-top: 40px;
 }
 h1 {
