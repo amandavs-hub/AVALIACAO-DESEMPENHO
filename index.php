@@ -1,32 +1,17 @@
 <?php
 /***
- * Amanda a idéia é a avaliação ser anônima?
- * Na AAPG a avaliação era criptografada mas não anônima, era periódica e em dado período 
- * o usuário poderia preencher e, pelo que me lembro não era possível editar.
- * Como será aqui?
+ * Pensando na minha pergunta anterior, criei essa Branch para fazer esse projeto de Avaliação de Desempenho
+ * integrado à Central de Chamados.
+ * Assim teremos toda a estrutura de tabelas de usuários ACL já criada.
+ * Ainda não há implementação de criptografia no Motor da Central de Chamados mas dá para 
+ * eu implementar aqui com base no que fiz para a AAPG
+ * A questão da criptografia será...
+ * Onde armazenaremos de forma segura a chave criptográfica?
  * 
- * bjs Yurex
- * 
- * Cheguei aqui Amandinha. Nesse projeto vamos ter criptografia?
- * 
- * Bjs Yurex
- 
-Este script foi gerado pelo chat gpt, precisamos:
-
-1) Isolar estas linhas de BD em outro arquivo para facilitar a organização do código.
-2) Ajustar as querys corretamente
-3) Vamos organizar uma pasta para .css também?
-4) Sugestão super válida do Yure: utilizar criptografia ao salvar os dados
-
+ * Yurex 17/12/25
  */
 
-
-
-// Conexão segura com MySQL
-/*$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "avaliacao";
+/*
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
