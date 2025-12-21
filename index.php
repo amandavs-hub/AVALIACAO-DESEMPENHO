@@ -8,6 +8,7 @@
  * A questão da criptografia será...
  * Onde armazenaremos de forma segura a chave criptográfica?
  * 
+ * 
  * Yurex 17/12/25
  */
 
