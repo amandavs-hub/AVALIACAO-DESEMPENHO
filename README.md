@@ -29,7 +29,7 @@ O **Sistema de Avaliação de Desempenho** foi desenvolvido para facilitar o pro
 ---
 
 ## 📂 Estrutura do Projeto
-/
+```text
 ├── index.php
 ├── config/
 │ └── database.php
@@ -38,3 +38,4 @@ O **Sistema de Avaliação de Desempenho** foi desenvolvido para facilitar o pro
 │ ├── js/
 │ └── img/
 └── README.md
+```
