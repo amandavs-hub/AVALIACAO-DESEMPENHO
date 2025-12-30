@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //$fields["p$i"] = clean($_POST["p$i"] ?? "");
         // Para php inferior ao 7 podemos usar o código (se shot-tags habilitado)
         // Código equivalente antes do PHP 7
-        $fields["p$i"] = claean(isset($_POST["p$i"]) ? $_POST["p$i"] : '');
+        $fields["p$i"] = (isset($_POST["p$i"]) ? $_POST["p$i"] : '');
         // Em outras palavras o Operador '??' equivale ao uso do COALESCE() no MySQL
     }
     // Essa forma de trabalho,abaixo, é muito interessante e bem mais segura
