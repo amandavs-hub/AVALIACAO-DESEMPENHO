@@ -37,4 +37,7 @@ O **Sistema de Avaliação de Desempenho** foi desenvolvido para facilitar o pro
 │ ├── css/
 │ ├── js/
 │ └── img/
-└── README.md
+├── ARCHITECTURE.md
+├── CHANGELOG.md
+├── README.md
+└── SETUP.md
